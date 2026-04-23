@@ -13,7 +13,12 @@ class EnterpriseManager:
     def register_document(self, input_file: str):
         """Register a document from a JSON input file."""
         with open(input_file, "r", encoding="utf-8") as file:
-            data = json.load(file)
+            raw_data = file.read()
+
+        if raw_data == "":
+            raise EnterpriseManagementException("The file is not JSON formatted.")
+
+        data = json.loads(raw_data)
 
         project_id = data["PROJECT_ID"]
         file_name = data["FILENAME"]
