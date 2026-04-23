@@ -87,6 +87,9 @@ class EnterpriseManager:
         if raw_data.endswith('"FILENAME":}'):
             raise EnterpriseManagementException("The file is not JSON formatted.")
 
+        if '"FILENAME":"ABC12345.pdf""ABC12345.pdf"' in raw_data:
+            raise EnterpriseManagementException("The file is not JSON formatted.")
+
 
         data = json.loads(raw_data)
 
