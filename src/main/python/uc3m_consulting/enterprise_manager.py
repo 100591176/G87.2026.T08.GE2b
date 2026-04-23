@@ -109,6 +109,10 @@ class EnterpriseManager:
         if not re.fullmatch(r"[0-9a-fA-F]{32}", project_id):
             raise EnterpriseManagementException("JSON data has no valid values.")
 
+        # Validation: FILENAME needs to have exactly 8 alphanumeric characters + valid ending
+        if not re.fullmatch(r"[a-zA-Z0-9]{8}\.(pdf|docx|xlsx)", file_name):
+            raise EnterpriseManagementException("JSON data has no valid values.")
+
         document = ProjectDocument(project_id, file_name)
         document_data = document.to_json()
         signature = document.file_signature
