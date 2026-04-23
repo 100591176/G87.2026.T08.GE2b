@@ -1,5 +1,6 @@
 """Module."""
 import json
+import re
 from uc3m_consulting import ProjectDocument
 from uc3m_consulting.enterprise_management_exception import EnterpriseManagementException
 
@@ -103,6 +104,10 @@ class EnterpriseManager:
 
         project_id = data["PROJECT_ID"]
         file_name = data["FILENAME"]
+
+        # Validation: PROJECT_ID needs to be exactly 32 Hex
+        if not re.fullmatch(r"[0-9a-fA-F]{32}", project_id):
+            raise EnterpriseManagementException("JSON data has no valid values.")
 
         document = ProjectDocument(project_id, file_name)
         document_data = document.to_json()
