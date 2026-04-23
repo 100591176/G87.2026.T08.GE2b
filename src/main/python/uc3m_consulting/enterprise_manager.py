@@ -93,8 +93,13 @@ class EnterpriseManager:
         if raw_data.startswith('{PROJECT_ID"'):
             raise EnterpriseManagementException("The file is not JSON formatted.")
 
+        try:
+            data = json.loads(raw_data)
+        except json.JSONDecodeError as ex:
+            raise EnterpriseManagementException("The file is not JSON formatted.") from ex
 
-        data = json.loads(raw_data)
+        if "PROJECT_ID" not in data or "FILENAME" not in data:
+            raise EnterpriseManagementException("JSON does not have the expected structure.")
 
         project_id = data["PROJECT_ID"]
         file_name = data["FILENAME"]
