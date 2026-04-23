@@ -300,3 +300,240 @@ class TestRegisterDocument(TestCase):
             "JSON does not have the expected structure."
         )
 
+    def test_tc37_delete_labelfield1_end_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID:"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc38_duplicate_labelfield1_end_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID"":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc39_modify_colon_field1(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID""84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc40_delete_valuefield1_starting_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc41_duplicate_valuefield1_starting_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":""84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc42_delete_value1(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"","FILENAME":"ABC12345.pdf"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc43_duplicate_value1(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7'
+            '84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc44_delete_valuefield1_ending_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7,"FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc45_duplicate_valuefield1_ending_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7"","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc46_delete_labelfield2_starting_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7",FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc47_duplicate_labelfield2_starting_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7",""FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc48_delete_filename_label(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","":"ABC12345.pdf"}',
+            "JSON does not have the expected structure."
+        )
+
+    def test_tc49_duplicate_filename_label(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7",'
+            '"FILENAMEFILENAME":"ABC12345.pdf"}',
+            "JSON does not have the expected structure."
+        )
+
+    def test_tc50_delete_labelfield2_ending_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME:"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc51_duplicate_labelfield2_ending_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME"":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc52_modify_colon_field2(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME""ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc53_delete_valuefield2_starting_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc54_duplicate_valuefield2_starting_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":""ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc55_delete_value2(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":""}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc56_duplicate_value2(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7",'
+            '"FILENAME":"ABC12345.pdfABC12345.pdf"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc57_delete_valuefield2_ending_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc58_duplicate_valuefield2_ending_quotation(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf""}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc59_modify_quotation_field1(self):
+        self._assert_invalid_case(
+            '{PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc60_modify_project_id_label(self):
+        self._assert_invalid_case(
+            '{"PROJ_CT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "JSON does not have the expected structure."
+        )
+
+    def test_tc61_modify_quotation_field1_end(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID:"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc62_modify_quotation_value1_start(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc63_modify_project_id_value(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5_bfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc64_modify_quotation_value1_end(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7,"FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc65_modify_quotation_field2_start(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7",FILENAME":"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc66_modify_filename_label(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILE_NAM":"ABC12345.pdf"}',
+            "JSON does not have the expected structure."
+        )
+
+    def test_tc67_modify_quotation_field2_end(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME:"ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc68_modify_quotation_value2_start(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":ABC12345.pdf"}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc69_delete_name(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":".pdf"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc70_duplicate_name(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7",'
+            '"FILENAME":"ABC12345ABC12345.pdf"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc71_delete_extension(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc72_duplicate_extension(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf.pdf"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc73_modify_quotation_value2_end(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pdf}',
+            "The file is not JSON formatted."
+        )
+
+    def test_tc74_modify_name_content(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12-45.pdf"}',
+            "JSON data has no valid values."
+        )
+
+    def test_tc75_modify_extension(self):
+        self._assert_invalid_case(
+            '{"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7","FILENAME":"ABC12345.pd_"}',
+            "JSON data has no valid values."
+        )
