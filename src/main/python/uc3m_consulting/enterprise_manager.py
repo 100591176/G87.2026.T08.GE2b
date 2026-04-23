@@ -1,8 +1,6 @@
 """Module."""
 import json
-from datetime import datetime, timezone
-
-from uc3m_consulting.enterprise_project import EnterpriseProject
+from uc3m_consulting import ProjectDocument
 from uc3m_consulting.enterprise_management_exception import EnterpriseManagementException
 
 
@@ -13,4 +11,23 @@ class EnterpriseManager:
         pass
 
     def register_document(self, input_file: str):
-        pass
+        """Register a document from a JSON input file."""
+        with open(input_file, "r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        project_id = data["PROJECT_ID"]
+        file_name = data["FILENAME"]
+
+        document = ProjectDocument(project_id, file_name)
+        document_data = document.to_json()
+        signature = document.file_signature
+
+        with open("all_documents.json", "r", encoding="utf-8") as file:
+            all_documents = json.load(file)
+
+        all_documents.append(document_data)
+
+        with open("all_documents.json", "w", encoding="utf-8") as file:
+            json.dump(all_documents, file, indent=4)
+
+        return signature
