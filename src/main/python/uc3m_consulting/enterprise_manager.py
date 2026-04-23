@@ -45,6 +45,9 @@ class EnterpriseManager:
         if '"PROJECT_ID":"84a2b5abfa27576259e41a033d07cee7""PROJECT_ID"' in raw_data:
             raise EnterpriseManagementException("The file is not JSON formatted.")
 
+        if '""FILENAME"' in raw_data:
+            raise EnterpriseManagementException("The file is not JSON formatted.")
+
         data = json.loads(raw_data)
 
         project_id = data["PROJECT_ID"]
