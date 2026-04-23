@@ -6,12 +6,14 @@ from uc3m_consulting.enterprise_management_exception import EnterpriseManagement
 
 
 class EnterpriseManager:
+    # pylint: disable=too-few-public-methods
     """Class for providing the methods for managing the orders."""
 
     def __init__(self):
         pass
 
     def register_document(self, input_file: str):
+        # pylint: disable=too-many-branches, too-many-statements
         """Register a document from a JSON input file."""
         with open(input_file, "r", encoding="utf-8") as file:
             raw_data = file.read()
